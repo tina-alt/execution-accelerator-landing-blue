@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+/* ---- Design tokens — Modern AI/Tech style ---- */
+:root {
+  --ink: #0F172A;
+  --ink-2: #1E293B;
+  --ink-3: #475569;
+  --paper: #E5E7EB;
+  --paper-2: #F3F4F6;
+  --paper-3: #F9FAFB;
+  --gold: #22D3EE;
+  --gold-pale: #CFFAFE;
+  --rust: #F97316;
+  --teal: #1D4ED8;
+  --white: #FFFFFF;
+  --border: rgba(51, 65, 85, 0.16);
+}
+
+/* Expose tokens to Tailwind v4 utilities */
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-paper-3: var(--paper-3);
+  --color-gold: var(--gold);
+  --color-gold-pale: var(--gold-pale);
+  --color-rust: var(--rust);
+  --color-teal: var(--teal);
+  --color-white-warm: var(--white);
+  --color-border-warm: var(--border);
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  --breakpoint-sm: 600px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles this */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Selection */
+::selection {
+  background: var(--teal);
+  color: var(--white);
+}
+
+/* Focus rings — cyan outline w/ offset, only on keyboard nav */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Reusable type tokens (component layer) */
+@layer components {
+  .t-hero {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .t-hero em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .t-h2 {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .t-h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .t-overline {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .t-body {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-2);
+    font-weight: 300;
+  }
+
+  .section-label-rule {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    border-bottom: 0.5px solid var(--border);
+    padding-bottom: 8px;
+  }
+}
+
+/* Subtle shimmer for placeholder boxes */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(34, 211, 238, 0.1) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+.shimmer:hover::after {
+  animation: shimmer 1.5s ease-out;
+}
+
+/* Gentle pulse for idle CTAs */
+@keyframes goldPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+  50% { box-shadow: 0 0 0 8px rgba(34, 211, 238, 0.2); }
+}
+.cta-pulse {
+  animation: goldPulse 2.4s ease-in-out infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
