@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { vision } from "@/lib/copy";
@@ -33,7 +33,7 @@ export function MastermindVision() {
           <div className="relative rounded-[6px] overflow-hidden border border-[var(--border)] aspect-[4/3]">
             <Image
               src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=1600&q=80"
-              alt=”A small group of business operators meeting around a wooden table with laptops, coffee, and notes - the kind of focused working session the program runs every week.”
+              alt="A small group of business operators meeting around a wooden table with laptops, coffee, and notes - the kind of focused working session the program runs every week."
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
@@ -56,5 +56,3 @@ export function MastermindVision() {
     </section>
   );
 }
-
-
